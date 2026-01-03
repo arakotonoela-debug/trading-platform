@@ -1,0 +1,104 @@
+# MT5 Bridge Configuration
+
+# MT5 Connection
+mt5:
+  broker: "DNA_FUNDED"
+  login: ""  # Remplir avec vos identifiants
+  password: ""
+  server: ""
+
+# Trading Configuration
+trading:
+  enabled: true
+  symbols:
+    - EURUSD
+    - GBPUSD
+    - USDJPY
+    - AUDUSD
+    - NZDUSD
+    - USDCAD
+    - USDCHF
+    - GOLD
+    - OIL
+  
+  timeframes:
+    - 15  # 15 minutes
+    - 60  # 1 hour
+    - 240 # 4 hours
+
+# Strategies Configuration
+strategies:
+  trend_following:
+    enabled: true
+    parameters:
+      ma_short: 20
+      ma_long: 50
+      min_confidence: 0.6
+      take_profit_pips: 50
+      stop_loss_pips: 30
+  
+  mean_reversion:
+    enabled: true
+    parameters:
+      bb_period: 20
+      bb_std_dev: 2
+      min_confidence: 0.65
+      take_profit_pips: 30
+      stop_loss_pips: 40
+  
+  scalping:
+    enabled: true
+    parameters:
+      rsi_period: 14
+      rsi_overbought: 70
+      rsi_oversold: 30
+      min_confidence: 0.7
+      take_profit_pips: 5
+      stop_loss_pips: 10
+
+# Risk Management
+risk_management:
+  max_daily_loss_percent: 5
+  max_drawdown_percent: 10
+  default_position_size_percent: 2
+  risk_reward_ratio: 1.5
+  max_trades_per_day: 20
+  max_concurrent_positions: 5
+
+# Monitoring
+monitoring:
+  market_data_interval: 5000  # milliseconds
+  performance_update_interval: 10000
+  risk_check_interval: 5000
+  alerts_check_interval: 10000
+  cleanup_interval: 300000
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "logs/mt5_bridge.log"
+  max_size: "10MB"
+  max_backups: 5
+
+# Alerts
+alerts:
+  email_enabled: false
+  email_to: "your-email@example.com"
+  webhook_enabled: false
+  webhook_url: ""
+  slack_enabled: false
+  slack_webhook: ""
+
+# Performance
+performance:
+  cache_ttl: 5  # seconds
+  batch_size: 100
+  timeout: 30  # seconds
+
+# Prop Firm Rules
+prop_firm:
+  name: "DNA_FUNDED"
+  max_drawdown: 10  # percent
+  daily_loss_limit: 5  # percent
+  profit_split: 80  # percent (trader keeps)
+  duration: 30  # days
